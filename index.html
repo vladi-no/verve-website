@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verve</title>
+    <meta
+      name="description"
+      content="Verve is a modern atelier for visual storytelling."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,800&family=Urbanist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="site-header">
+        <p class="site-tagline">A modern atelier for visual storytelling</p>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-menu"
+          aria-label="Open site menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="menu-panel" id="site-menu" aria-label="Primary">
+          <a href="./index.html" aria-current="page">Home Page w/ Video Hero</a>
+          <a href="./portfolio.html">Image Portfolio</a>
+          <a href="./about.html">About</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <main id="home" class="hero-stage">
+        <section class="hero-frame" aria-label="Verve introduction">
+          <div class="hero-image" role="img" aria-label="Editorial interior composition for Verve">
+            <div class="hero-image__window"></div>
+            <div class="hero-image__wall"></div>
+            <div class="hero-image__seat"></div>
+            <div class="hero-image__floor"></div>
+            <div class="hero-image__shadow"></div>
+            <div class="hero-image__glass"></div>
+
+            <div class="hero-logo" aria-label="Verve">
+              <span>ver</span>
+              <span>ve</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="bottom-band" aria-hidden="true"></div>
+
+      <section class="page-hints" aria-label="Planned site sections">
+        <article>
+          <h2>Image Portfolio</h2>
+          <p>Planned from the Figma page list and ready for implementation once the full frame details are available.</p>
+          <a class="page-link" href="./portfolio.html">Open page</a>
+        </article>
+        <article>
+          <h2>About</h2>
+          <p>The Figma board includes an About page. This homepage currently focuses on the hero composition that was available to inspect.</p>
+          <a class="page-link" href="./about.html">Open page</a>
+        </article>
+        <article>
+          <h2>Contact</h2>
+          <p>Contact page content exists in the Figma page list. It can be built next when the MCP rate limit resets or more screenshots are provided.</p>
+          <a class="page-link" href="./contact.html">Open page</a>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>

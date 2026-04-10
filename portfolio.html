@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verve | Image Portfolio</title>
+    <meta
+      name="description"
+      content="Verve image portfolio page."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,800&family=Urbanist:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <div class="page page--interior">
+      <header class="site-header">
+        <p class="site-tagline">A modern atelier for visual storytelling</p>
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-menu"
+          aria-label="Open site menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="menu-panel" id="site-menu" aria-label="Primary">
+          <a href="./index.html">Home Page w/ Video Hero</a>
+          <a href="./portfolio.html" aria-current="page">Image Portfolio</a>
+          <a href="./about.html">About</a>
+          <a href="./contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <main class="subpage-stage">
+        <section class="subpage-hero">
+          <p class="subpage-kicker">Figma Page 1:28</p>
+          <h1>Image Portfolio</h1>
+          <p class="subpage-copy">
+            This page is now wired into the site navigation. The full layout can
+            be implemented next from the Figma frame once the MCP limit resets
+            or additional screenshots are available.
+          </p>
+        </section>
+
+        <section class="subpage-grid" aria-label="Image portfolio placeholders">
+          <article class="subpage-card subpage-card--large">
+            <h2>Hero Narrative</h2>
+            <p>
+              The Figma board shows this page as an image-led composition with
+              the Verve identity and editorial spacing.
+            </p>
+          </article>
+          <article class="subpage-card">
+            <h2>Curated Projects</h2>
+            <p>
+              Placeholder area for gallery blocks, case study images, or stills.
+            </p>
+          </article>
+          <article class="subpage-card">
+            <h2>Motion / Photography</h2>
+            <p>
+              This section can hold the final portfolio categories once the real
+              frame details are accessible.
+            </p>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
