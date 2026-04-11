@@ -465,14 +465,14 @@ a {
 
   .menu-toggle {
     top: 24px;
-    right: 8px;
+    right: 20px;
     width: 48px;
     height: 48px;
   }
 
   .menu-panel {
     top: 84px;
-    right: 8px;
+    right: 20px;
     min-width: 180px;
   }
 
