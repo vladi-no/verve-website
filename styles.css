@@ -44,7 +44,7 @@ a {
   background:
     radial-gradient(circle at 18% 20%, rgba(211, 154, 89, 0.14), transparent 22%),
     radial-gradient(circle at 74% 34%, rgba(159, 95, 91, 0.16), transparent 24%),
-    linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal) 79%, var(--blush) 79%, var(--blush) 100%);
+    var(--charcoal);
 }
 
 .site-header {
@@ -188,6 +188,8 @@ a {
 }
 
 .home-footer {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 1.2fr 1fr auto;
   align-items: start;
@@ -197,6 +199,18 @@ a {
   margin: 0 auto;
   padding: 46px 24px 64px;
   color: var(--charcoal-deep);
+}
+
+.home-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--blush);
 }
 
 .home-footer__intro,
@@ -451,13 +465,14 @@ a {
 
   .menu-toggle {
     top: 24px;
-    right: 0;
+    right: 8px;
     width: 48px;
     height: 48px;
   }
 
   .menu-panel {
     top: 84px;
+    right: 8px;
     min-width: 180px;
   }
 
