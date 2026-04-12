@@ -428,6 +428,7 @@ a {
 
   .hero-image {
     min-height: 0;
+    border-radius: 36px;
   }
 
   .home-footer {
