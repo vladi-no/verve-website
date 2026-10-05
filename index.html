@@ -3,82 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Verve</title>
+    <meta name="theme-color" content="#e0ddcf" />
+    <title>Verve | We Create Worlds Around Products</title>
     <meta
       name="description"
-      content="Verve is a modern atelier for visual storytelling."
+      content="Verve is a studio working across design, environments, brand, imagery, film and experience. We create worlds around products."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,800&family=Urbanist:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./home.css" />
+    <script src="./home.js" defer></script>
   </head>
-  <body>
-    <div class="page">
-      <header class="site-header">
-        <p class="site-tagline">A modern atelier for visual storytelling</p>
+  <body class="home-page" id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-menu"
-          aria-label="Open site menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <header class="home-header">
+      <a class="home-tagline" href="#top">We create worlds around products.</a>
+      <button
+        class="home-menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="home-navigation"
+        aria-label="Open site menu"
+      >
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="home-nav" id="home-navigation" aria-label="Primary">
+        <a href="#top" aria-current="page">Home</a>
+        <a href="#work">Featured</a>
+        <a href="#about">About</a>
+        <a href="#press">Press</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-        <nav class="menu-panel" id="site-menu" aria-label="Primary">
-          <a href="./index.html" aria-current="page">Home</a>
-          <a href="./portfolio.html">Image Portfolio</a>
-          <a href="./about.html">About</a>
-          <a href="./contact.html">Contact</a>
-        </nav>
-      </header>
-
-      <main id="home" class="hero-stage">
-        <section class="hero-frame" aria-label="Verve introduction">
-          <figure class="hero-image">
-            <img
-              src="./assets/img/verve-home-hero.webp"
-              alt="Verve logo over a seated portrait inside an editorial interior."
-              width="2796"
-              height="1702"
-            />
-          </figure>
-
-          <div class="hero-notes" aria-label="Studio focus">
-            <p>Brand identity, web presence, and visual storytelling.</p>
-            <p>vervebyoakey.com</p>
-          </div>
-        </section>
-      </main>
-
-      <section class="home-footer" aria-label="Site navigation">
-        <div class="home-footer__intro">
-          <p class="home-footer__eyebrow">Verve</p>
-          <p class="home-footer__summary">
-            A minimal structure for the pages already mapped from Figma.
-          </p>
-        </div>
-
-        <nav class="home-footer__nav" aria-label="Home page quick links">
-          <a href="./portfolio.html">Image Portfolio</a>
-          <a href="./about.html">About</a>
-          <a href="./contact.html">Contact</a>
-        </nav>
-
-        <div class="home-footer__contact">
-          <span>Next</span>
-          <a href="./contact.html">Open inquiries page</a>
+    <main id="main">
+      <section class="home-hero" aria-label="Verve">
+        <div class="home-hero__frame">
+          <img
+            class="home-hero__photo"
+            src="./assets/img/verve-coast.webp"
+            srcset="./assets/img/verve-coast-960.webp 960w, ./assets/img/verve-coast.webp 2400w"
+            sizes="(max-width: 900px) 150vw, 100vw"
+            alt="Sunlit parasols and loungers on a coastal terrace above the sea."
+            width="2400"
+            height="1350"
+            fetchpriority="high"
+          />
+          <h1 class="home-hero__mark">
+            <img src="./assets/img/verve-mark-cream.webp" alt="Verve" width="860" height="622" />
+          </h1>
         </div>
       </section>
-    </div>
+
+      <section class="home-statement" aria-labelledby="statement-heading">
+        <h2 id="statement-heading">We create <em>worlds</em><br />around products.</h2>
+      </section>
+
+      <section class="featured" id="work" aria-labelledby="featured-heading">
+        <div class="section-heading">
+          <h2 id="featured-heading">Featured</h2>
+          <span aria-hidden="true"></span>
+        </div>
+
+        <article class="project" aria-labelledby="linea-heading">
+          <figure class="project__image">
+            <img
+              src="./assets/img/linea-mare.webp"
+              srcset="./assets/img/linea-mare-900.webp 900w, ./assets/img/linea-mare.webp 1800w"
+              sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
+              alt="An overhead view of a swimmer surrounded by ripples in a turquoise tiled pool."
+              width="1800" height="1013" loading="lazy" decoding="async"
+            />
+          </figure>
+          <div class="project__details">
+            <div class="project__label"><span>Linea Mare</span><span>01</span></div>
+            <div class="project__description">
+              <h3 id="linea-heading">An Italian coastal collection, built from the room outward.</h3>
+              <p>From object to atmosphere</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project--reverse" aria-labelledby="harmonia-heading">
+          <figure class="project__image">
+            <img
+              src="./assets/img/harmonia-parador.webp"
+              srcset="./assets/img/harmonia-parador-900.webp 900w, ./assets/img/harmonia-parador.webp 1800w"
+              sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
+              alt="A woman beside a sculptural table in an interior overlooking a bamboo garden."
+              width="1800" height="1013" loading="lazy" decoding="async"
+            />
+          </figure>
+          <div class="project__details">
+            <div class="project__label"><span>Harmonia / Parador</span><span>02</span></div>
+            <div class="project__description">
+              <h3 id="harmonia-heading">An environment that never becomes the story.</h3>
+              <p>See the world we built</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="studio" id="about" aria-labelledby="studio-heading">
+        <h2 id="studio-heading">We are Verve.</h2>
+        <p>
+          A studio working across design, environments, brand, imagery, film and
+          experience. We build the world a product lives in &mdash; the
+          architecture, the light, the material, the story &mdash; and then we
+          make it move.
+        </p>
+      </section>
+
+      <section class="press-section" id="press" aria-labelledby="press-heading">
+        <h2 id="press-heading">Press</h2>
+        <p>Press information coming soon.</p>
+      </section>
+    </main>
+
+    <footer class="contact-footer" id="contact" aria-label="Contact">
+      <div class="contact-footer__row">
+        <a class="contact-footer__email" href="mailto:hello@verve.studio">hello@verve.studio</a>
+        <nav aria-label="More from Verve">
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+          <a href="#top">Back to top <span aria-hidden="true">&#8593;</span></a>
+        </nav>
+        <span>VERVE &copy; 2026</span>
+      </div>
+    </footer>
   </body>
 </html>
