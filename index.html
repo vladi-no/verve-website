@@ -114,12 +114,111 @@
       </section>
 
       <section class="press-section" id="press" aria-labelledby="press-heading">
-        <h2 id="press-heading">Press</h2>
-        <p>Press information coming soon.</p>
+        <div class="press-section__heading">
+          <h2 id="press-heading">Press</h2>
+          <p class="press-section__note">Studio news</p>
+        </div>
+
+        <div class="press-carousel">
+          <button
+            class="press-carousel__arrow press-carousel__arrow--previous"
+            type="button"
+            aria-label="Previous press release"
+            aria-controls="press-releases"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M19 12H5m6-6-6 6 6 6" />
+            </svg>
+          </button>
+
+          <div class="press-carousel__track" id="press-releases" role="region" aria-label="Studio news" tabindex="0">
+            <article class="press-release" aria-labelledby="press-studio-heading">
+              <p class="press-release__category">Studio / 01</p>
+              <h3 id="press-studio-heading">A new perspective from Atlanta.</h3>
+              <p class="press-release__summary">
+                Verve introduces its Atlanta, Georgia studio, bringing design,
+                imagery, film and experience together around the worlds that
+                products inhabit.
+              </p>
+              <p class="press-release__location">Atlanta, Georgia</p>
+            </article>
+
+            <article class="press-release" aria-labelledby="press-worlds-heading">
+              <p class="press-release__category">Perspective / 02</p>
+              <h3 id="press-worlds-heading">From a single object to a whole world.</h3>
+              <p class="press-release__summary">
+                The studio shares its approach to product storytelling, drawing
+                on architecture, materials and light to create a sense of place
+                around each object.
+              </p>
+              <p class="press-release__location">Atlanta, Georgia</p>
+            </article>
+
+            <article class="press-release" aria-labelledby="press-editorial-heading">
+              <p class="press-release__category">Collaboration / 03</p>
+              <h3 id="press-editorial-heading">An editorial study in light and material.</h3>
+              <p class="press-release__summary">
+                Verve presents an editorial collaboration exploring the
+                relationship between objects and their surroundings through
+                still imagery and film.
+              </p>
+              <p class="press-release__location">Atlanta, Georgia</p>
+            </article>
+
+            <article class="press-release" aria-labelledby="press-motion-heading">
+              <p class="press-release__category">Motion / 04</p>
+              <h3 id="press-motion-heading">Objects in motion.</h3>
+              <p class="press-release__summary">
+                Verve explores how movement, rhythm and sound can bring a product
+                story to life, extending its Atlanta studio's practice from still
+                imagery into film.
+              </p>
+              <p class="press-release__location">Atlanta, Georgia</p>
+            </article>
+          </div>
+
+          <button
+            class="press-carousel__arrow press-carousel__arrow--next"
+            type="button"
+            aria-label="Next press release"
+            aria-controls="press-releases"
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M5 12h14m-6-6 6 6-6 6" />
+            </svg>
+          </button>
+        </div>
       </section>
     </main>
 
     <footer class="contact-footer" id="contact" aria-label="Contact">
+      <div class="contact-intro">
+        <h2 id="contact-heading">Start a conversation.</h2>
+        <p>Tell us what you have in mind.</p>
+      </div>
+
+      <form class="contact-form" method="post" aria-labelledby="contact-heading">
+        <div class="contact-form__field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="contact-form__field">
+          <label for="contact-email">Email</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="contact-form__field contact-form__field--message">
+          <label for="contact-message">Message</label>
+          <textarea id="contact-message" name="message" rows="4" required></textarea>
+        </div>
+        <div class="contact-form__actions">
+          <button class="contact-form__send" type="submit">
+            Send inquiry <span aria-hidden="true">&#8599;</span>
+          </button>
+        </div>
+      </form>
+
       <div class="contact-footer__row">
         <a class="contact-footer__email" href="mailto:hello@verve.studio">hello@verve.studio</a>
         <nav aria-label="More from Verve">

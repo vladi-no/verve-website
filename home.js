@@ -2,6 +2,58 @@ const menuToggle = document.querySelector(".home-menu-toggle");
 const navigation = document.querySelector(".home-nav");
 const mobileLayout = window.matchMedia("(max-width: 900px)");
 
+const pressTrack = document.querySelector(".press-carousel__track");
+const previousRelease = document.querySelector(".press-carousel__arrow--previous");
+const nextRelease = document.querySelector(".press-carousel__arrow--next");
+
+if (pressTrack && previousRelease && nextRelease) {
+  const releases = Array.from(pressTrack.querySelectorAll(".press-release"));
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const releasePositions = () => {
+    const trackLeft = pressTrack.getBoundingClientRect().left;
+    return releases.map((release) => (
+      release.getBoundingClientRect().left - trackLeft + pressTrack.scrollLeft
+    ));
+  };
+
+  const updateArrows = () => {
+    const lastPosition = pressTrack.scrollWidth - pressTrack.clientWidth;
+    previousRelease.disabled = pressTrack.scrollLeft <= 1;
+    nextRelease.disabled = pressTrack.scrollLeft >= lastPosition - 1;
+  };
+
+  const scrollRelease = (direction) => {
+    const positions = releasePositions();
+    const currentPosition = pressTrack.scrollLeft;
+    const target = direction > 0
+      ? positions.find((position) => position > currentPosition + 2)
+      : positions.slice().reverse().find((position) => position < currentPosition - 2);
+
+    pressTrack.scrollTo({
+      left: target ?? (direction > 0 ? pressTrack.scrollWidth : 0),
+      behavior: reducedMotion.matches ? "instant" : "smooth",
+    });
+  };
+
+  previousRelease.hidden = false;
+  nextRelease.hidden = false;
+  previousRelease.addEventListener("click", () => scrollRelease(-1));
+  nextRelease.addEventListener("click", () => scrollRelease(1));
+  pressTrack.addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
+  updateArrows();
+}
+
+const contactForm = document.querySelector(".contact-form");
+
+if (contactForm) {
+  // Keep submissions local until a form service is connected.
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+  });
+}
+
 if (menuToggle && navigation) {
   document.documentElement.classList.add("js");
 
