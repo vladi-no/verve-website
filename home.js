@@ -19,6 +19,22 @@ if (pageNavigation?.type === "reload" && window.location.hash === "#top") {
   }, { once: true });
 }
 
+if ("IntersectionObserver" in window) {
+  const projectObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-in-view");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll(".project__image").forEach((image) => {
+    image.classList.add("project__image--animated");
+    projectObserver.observe(image);
+  });
+}
+
 const pressTrack = document.querySelector(".press-carousel__track");
 const previousRelease = document.querySelector(".press-carousel__arrow--previous");
 const nextRelease = document.querySelector(".press-carousel__arrow--next");

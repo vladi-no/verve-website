@@ -264,6 +264,19 @@ a:hover {
   object-fit: cover;
 }
 
+.project__image--animated img {
+  animation: coast-drift 18s ease-out both;
+  animation-play-state: paused;
+}
+
+.project__image--zoom-out img {
+  animation-name: coast-recede;
+}
+
+.project__image--animated.is-in-view img {
+  animation-play-state: running;
+}
+
 .project__details {
   grid-column: 10 / 13;
   grid-row: 1;
@@ -688,6 +701,11 @@ a:hover {
   to { transform: scale(1.12) translateY(-1.2%); }
 }
 
+@keyframes coast-recede {
+  from { transform: scale(1.12) translateY(-1.2%); }
+  to { transform: scale(1.06); }
+}
+
 @media (max-width: 1100px) {
   .project,
   .studio {
@@ -879,7 +897,8 @@ a:hover {
     scroll-behavior: auto;
   }
 
-  .home-hero__photo {
+  .home-hero__photo,
+  .project__image--animated img {
     animation: none;
   }
 
