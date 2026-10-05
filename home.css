@@ -253,6 +253,7 @@ a:hover {
   min-height: clamp(320px, 64vh, 700px);
   margin: 0;
   overflow: hidden;
+  border-radius: 18px;
   background: var(--paper);
 }
 
