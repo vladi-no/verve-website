@@ -2,6 +2,23 @@ const menuToggle = document.querySelector(".home-menu-toggle");
 const navigation = document.querySelector(".home-nav");
 const mobileLayout = window.matchMedia("(max-width: 900px)");
 
+const pageNavigation = performance.getEntriesByType("navigation")[0];
+
+if (pageNavigation?.type === "reload" && window.location.hash === "#top") {
+  // Prevent restored scroll positions from overriding the top anchor on reload.
+  const previousScrollRestoration = window.history.scrollRestoration;
+  window.history.scrollRestoration = "manual";
+
+  window.addEventListener("pageshow", () => {
+    window.requestAnimationFrame(() => {
+      if (window.location.hash === "#top") {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+      window.history.scrollRestoration = previousScrollRestoration;
+    });
+  }, { once: true });
+}
+
 const pressTrack = document.querySelector(".press-carousel__track");
 const previousRelease = document.querySelector(".press-carousel__arrow--previous");
 const nextRelease = document.querySelector(".press-carousel__arrow--next");
