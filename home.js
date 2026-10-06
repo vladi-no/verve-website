@@ -29,11 +29,58 @@ if ("IntersectionObserver" in window) {
     });
   }, { threshold: 0.15 });
 
-  document.querySelectorAll(".project__image").forEach((image) => {
+  document.querySelectorAll(".project__image:not(.project__image--carousel)").forEach((image) => {
     image.classList.add("project__image--animated");
     projectObserver.observe(image);
   });
 }
+
+document.querySelectorAll(".project__image--carousel").forEach((carousel) => {
+  const slides = Array.from(carousel.querySelectorAll(".project__slide"));
+  const control = carousel.querySelector(".project__carousel-control");
+  const counter = carousel.querySelector(".project__carousel-counter");
+  const status = carousel.querySelector(".project__carousel-status");
+  const pad = (number) => String(number).padStart(2, "0");
+  let activeIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
+
+  if (slides.length < 2 || !control) return;
+  if (activeIndex < 0) activeIndex = 0;
+
+  const updateStatus = () => {
+    if (counter) {
+      counter.textContent = `${pad(activeIndex + 1)} / ${pad(slides.length)}`;
+    }
+    if (status) status.textContent = `Image ${activeIndex + 1} of ${slides.length}`;
+  };
+
+  slides.forEach((slide, index) => {
+    const isActive = index === activeIndex;
+    slide.classList.toggle("is-active", isActive);
+    slide.setAttribute("aria-hidden", String(!isActive));
+  });
+  updateStatus();
+
+  const showSlide = (nextIndex) => {
+    slides[activeIndex].classList.remove("is-active");
+    slides[activeIndex].setAttribute("aria-hidden", "true");
+    activeIndex = (nextIndex + slides.length) % slides.length;
+    slides[activeIndex].classList.add("is-active");
+    slides[activeIndex].setAttribute("aria-hidden", "false");
+
+    updateStatus();
+  };
+
+  carousel.addEventListener("click", () => showSlide(activeIndex + 1));
+  control.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showSlide(activeIndex + 1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showSlide(activeIndex - 1);
+    }
+  });
+});
 
 const pressTrack = document.querySelector(".press-carousel__track");
 const previousRelease = document.querySelector(".press-carousel__arrow--previous");
@@ -81,9 +128,33 @@ if (pressTrack && previousRelease && nextRelease) {
 const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
-  // Keep submissions local until a form service is connected.
+  const contactStatus = document.querySelector(".contact-form__status");
+
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const message = String(formData.get("message") ?? "");
+    const subject = encodeURIComponent(`Website inquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`,
+    );
+
+    const mailto = `mailto:christa@oakeyagency.com?subject=${subject}&body=${body}`;
+    const mailLink = document.createElement("a");
+    mailLink.href = mailto;
+    mailLink.textContent = "Open the email draft";
+
+    if (contactStatus) {
+      contactStatus.replaceChildren(
+        document.createTextNode("Click to open your email draft: "),
+        mailLink,
+        document.createTextNode(".")
+      );
+      contactStatus.hidden = false;
+    }
   });
 }
 

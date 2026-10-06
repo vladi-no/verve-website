@@ -27,9 +27,9 @@ horizontal carousel, with left/right arrows and mobile swipe scrolling. The
 section is labeled "Studio news" and still needs final client-approved content.
 Instagram and LinkedIn links remain placeholders pending real destinations.
 
-The contact form has required Name, Email, and Message fields. It is not connected
-to a submission service: JavaScript currently prevents submission without sending
-data or showing a success message. The email link remains available.
+The contact form has required Name, Email, and Message fields. Submitting it
+opens a prefilled email in the visitor's default mail app; the visitor must send
+it from there. The email link remains available as well.
 
 The hero and pool image slowly zoom in; the image with the woman slowly zooms out.
 Animations run for 18 seconds, and featured images start once when they enter

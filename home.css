@@ -264,6 +264,106 @@ a:hover {
   object-fit: cover;
 }
 
+.project__image--carousel {
+  cursor: pointer;
+}
+
+.project__carousel-control {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.project__carousel-control:focus-visible {
+  outline: 2px solid var(--paper-light);
+  outline-offset: -5px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.project__image--carousel .project__slide {
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.project__image--carousel .project__slide.is-active {
+  opacity: 1;
+}
+
+.project__carousel-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(transparent 55%, rgb(0 0 0 / 32%));
+  pointer-events: none;
+}
+
+.project__carousel-hint {
+  position: absolute;
+  z-index: 2;
+  right: 28px;
+  bottom: 26px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: var(--paper-light);
+  pointer-events: none;
+}
+
+.project__carousel-prompt {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.project__carousel-counter {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+}
+
+.project__carousel-pulse {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.project__carousel-pulse::before {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  content: "";
+  animation: project-carousel-pulse 2.4s ease-out infinite;
+}
+
+@keyframes project-carousel-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  70%, 100% { transform: scale(2.6); opacity: 0; }
+}
+
 .project__image--animated img {
   animation: coast-drift 18s ease-out both;
   animation-play-state: paused;
@@ -302,7 +402,8 @@ a:hover {
   text-transform: uppercase;
 }
 
-.project__description h3 {
+.project__description h3,
+.studio__intro {
   margin: 0 0 16px;
   font-family: "Newsreader", serif;
   font-weight: 300;
@@ -342,16 +443,29 @@ a:hover {
 }
 
 .studio h2 {
-  grid-column: 1 / 6;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 8px 12px;
+  position: absolute;
+  z-index: 1;
+  right: 24px;
+  bottom: 24px;
+  left: 24px;
   margin: 0;
+  color: #fff;
   font-weight: 400;
   font-size: clamp(32px, 4.2vw, 62px);
   line-height: 1.1;
   letter-spacing: -0.015em;
 }
 
+.studio__copy {
+  grid-column: 7 / 13;
+  grid-row: 1;
+}
+
 .studio p {
-  grid-column: 7 / 12;
   max-width: 34em;
   margin: 0;
   color: var(--body-copy);
@@ -360,16 +474,53 @@ a:hover {
   text-wrap: pretty;
 }
 
+.studio__intro {
+  max-width: 15em;
+  margin-bottom: 16px;
+}
+
+.studio__image {
+  position: relative;
+  grid-column: 1 / 6;
+  grid-row: 1;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #292720;
+}
+
+.studio__image::after {
+  position: absolute;
+  inset: 35% 0 0;
+  background: linear-gradient(transparent, rgb(0 0 0 / 55%));
+  content: "";
+}
+
+.studio__image .studio__photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.studio__image .studio__wordmark {
+  position: relative;
+  width: min(100%, 280px);
+  height: auto;
+}
+
 .contact-footer {
   padding: clamp(90px, 15vh, 180px) var(--gutter) 40px;
 }
 
 .contact-intro {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
   margin-bottom: 56px;
 }
 
@@ -447,6 +598,18 @@ a:hover {
 .contact-form__actions {
   display: flex;
   justify-content: flex-start;
+}
+
+.contact-form__status {
+  grid-column: 1 / -1;
+  margin: -20px 0 0;
+  color: var(--body-copy);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.contact-form__status a {
+  text-decoration: underline;
 }
 
 .contact-form__send {
@@ -866,9 +1029,14 @@ a:hover {
     padding-block: 100px;
   }
 
-  .studio h2,
-  .studio p {
+  .studio__copy {
     grid-column: 1;
+    grid-row: auto;
+  }
+
+  .studio__image {
+    grid-column: 1;
+    grid-row: auto;
   }
 
   .contact-footer {
@@ -898,8 +1066,11 @@ a:hover {
   }
 
   .home-hero__photo,
-  .project__image--animated img {
+  .project__image--animated img,
+  .project__image--carousel .project__slide,
+  .project__carousel-pulse::before {
     animation: none;
+    transition: none;
   }
 
   .home-menu-toggle span {

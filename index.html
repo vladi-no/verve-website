@@ -10,7 +10,7 @@
       content="Verve is a studio working across design, environments, brand, imagery, film and experience. We create worlds around products."
     />
     <link rel="stylesheet" href="./home.css" />
-    <script src="./home.js" defer></script>
+    <script src="./home.js?v=collection-carousel-1" defer></script>
   </head>
   <body class="home-page" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -108,20 +108,80 @@
           class="project project--reverse"
           aria-labelledby="harmonia-heading"
         >
-          <figure class="project__image project__image--zoom-out">
+          <figure
+            class="project__image project__image--carousel"
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Harmonia / Parador collection highlights"
+          >
             <img
-              src="./assets/img/harmonia-parador.webp"
+              class="project__slide is-active"
+              src="./assets/img/harmonia-nexus-2400.webp"
               srcset="
-                ./assets/img/harmonia-parador-900.webp  900w,
-                ./assets/img/harmonia-parador.webp     1800w
+                ./assets/img/harmonia-nexus-900.webp   900w,
+                ./assets/img/harmonia-nexus-1800.webp 1800w,
+                ./assets/img/harmonia-nexus-2400.webp 2400w
               "
               sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
-              alt="A woman beside a sculptural table in an interior overlooking a bamboo garden."
-              width="1800"
-              height="1013"
+              alt="A woman stands beside a sculptural dining table in a bamboo-lined interior."
+              width="2400"
+              height="1444"
               loading="lazy"
               decoding="async"
+              aria-hidden="false"
             />
+            <img
+              class="project__slide"
+              src="./assets/img/harmonia-favo-2400.webp"
+              srcset="
+                ./assets/img/harmonia-favo-900.webp   900w,
+                ./assets/img/harmonia-favo-1800.webp 1800w,
+                ./assets/img/harmonia-favo-2400.webp 2400w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
+              alt="A woman in a light suit stands in a sunlit timber room beside sculptural furniture."
+              width="2400"
+              height="1444"
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+            <img
+              class="project__slide"
+              src="./assets/img/harmonia-ripplum-2400.webp"
+              srcset="
+                ./assets/img/harmonia-ripplum-900.webp   900w,
+                ./assets/img/harmonia-ripplum-1800.webp 1800w,
+                ./assets/img/harmonia-ripplum-2400.webp 2400w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
+              alt="A man relaxes in a chair beside a panoramic mountain view."
+              width="2400"
+              height="1444"
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+            <button
+              class="project__carousel-control"
+              type="button"
+              aria-label="Show the next collection highlight"
+              aria-describedby="harmonia-carousel-status"
+            ></button>
+            <div class="project__carousel-scrim" aria-hidden="true"></div>
+            <div class="project__carousel-hint" aria-hidden="true">
+              <span class="project__carousel-prompt">
+                <span class="project__carousel-pulse"></span>
+                View collection highlights
+              </span>
+              <span class="project__carousel-counter" aria-live="polite">01 / 03</span>
+            </div>
+            <span
+              class="visually-hidden project__carousel-status"
+              id="harmonia-carousel-status"
+              aria-live="polite"
+              >Image 1 of 3</span
+            >
           </figure>
           <div class="project__details">
             <div class="project__label">
@@ -129,22 +189,50 @@
             </div>
             <div class="project__description">
               <h3 id="harmonia-heading">
-                An environment that never becomes the story.
+                A setting as considered as the product itself, designed to let it shine.
               </h3>
-              <p>See the world we built</p>
             </div>
           </div>
         </article>
       </section>
 
       <section class="studio" id="about" aria-labelledby="studio-heading">
-        <h2 id="studio-heading">We are Verve.</h2>
-        <p>
-          A studio working across design, environments, brand, imagery, film and
-          experience. We build the world a product lives in, from the
-          architecture and light to the material and story. Then, we make it
-          move.
-        </p>
+        <figure class="studio__image">
+          <img
+            class="studio__photo"
+            src="./assets/img/verve-team-900.webp"
+            alt="The Verve team together in the studio."
+            width="900"
+            loading="lazy"
+            decoding="async"
+          />
+          <h2 id="studio-heading">
+            We are
+            <img
+              class="studio__wordmark"
+              src="./assets/img/verve-paper.png"
+              alt="Verve"
+              width="1298"
+              height="294"
+            />
+          </h2>
+        </figure>
+        <div class="studio__copy">
+          <h3 class="studio__intro">
+            A creative studio working across design, environments,
+            brand, imagery, film, and experience.
+          </h3>
+          <p>
+            We partner with design-led brands and manufacturers to define how a
+            product is seen, felt, and experienced from the spaces that surround
+            it to the light that falls across its surface.
+            <br />
+            Our work begins with the details: architecture, material,
+            proportion, texture, color, atmosphere, and story. We build
+            considered worlds around products, then bring those worlds to life
+            through high-end CGI, photography, film, and emerging technologies.
+          </p>
+        </div>
       </section>
 
       <section class="press-section" id="press" aria-labelledby="press-heading">
@@ -294,6 +382,7 @@
             Send inquiry <span aria-hidden="true">&#8599;</span>
           </button>
         </div>
+        <p class="contact-form__status" role="status" aria-live="polite" hidden></p>
       </form>
 
       <div class="contact-footer__row">
