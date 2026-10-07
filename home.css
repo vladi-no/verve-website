@@ -124,6 +124,27 @@ a:hover {
   line-height: 1.25;
 }
 
+.home-header__brand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-header__logo {
+  display: none;
+  width: 56px;
+  flex: none;
+}
+
+.home-header__logo img {
+  width: 100%;
+}
+
+.home-header.is-featured .home-header__logo {
+  display: block;
+}
+
 .home-nav {
   display: flex;
   align-items: center;
@@ -244,6 +265,10 @@ a:hover {
   align-items: stretch;
   padding: 26px var(--gutter) clamp(40px, 6vh, 80px);
   border-top: 1px solid var(--rule);
+}
+
+.featured > .project:first-of-type {
+  border-top: 0;
 }
 
 .project__image {
@@ -751,13 +776,265 @@ a:hover {
 }
 
 .press-section .press-release__location {
-  margin: auto 0 0;
+  margin: 18px 0 0;
   padding-top: 20px;
   border-top: 1px solid var(--rule);
   color: var(--muted);
   font-family: "IBM Plex Mono", monospace;
   font-size: 10px;
   letter-spacing: 0.08em;
+}
+
+.press-release__open {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  margin-top: auto;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.press-release__open-label {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.22em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.press-release__open-arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.press-release[role="button"]:hover .press-release__open,
+.press-release[role="button"]:focus-visible .press-release__open {
+  color: var(--ink);
+}
+
+.press-release[role="button"]:hover .press-release__open-label,
+.press-release[role="button"]:focus-visible .press-release__open-label {
+  text-decoration-color: currentColor;
+}
+
+.press-release[role="button"] {
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.press-release[role="button"]:hover,
+.press-release[role="button"]:focus-visible {
+  border-color: var(--ink);
+}
+
+.press-release[role="button"]:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.press-release__more[hidden] {
+  display: none;
+}
+
+.press-dialog {
+  position: fixed;
+  width: min(720px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(88dvh, 900px);
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 18px;
+  color: var(--ink);
+  background: transparent;
+}
+
+.press-dialog::backdrop {
+  background: rgb(20 20 18 / 55%);
+  backdrop-filter: blur(3px);
+}
+
+.press-dialog__card {
+  position: relative;
+  max-height: min(88dvh, 900px);
+  overflow-y: auto;
+  padding: clamp(32px, 6vw, 64px);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--paper);
+}
+
+.press-dialog__content {
+  max-width: 560px;
+}
+
+.press-dialog__visual:not([hidden]) {
+  margin-top: 32px;
+}
+
+.press-story-plate {
+  display: grid;
+  aspect-ratio: 4 / 3;
+  gap: 6px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--sand);
+}
+
+.press-story-plate[hidden] {
+  display: none;
+}
+
+.press-story-plate figure {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  background: var(--sand);
+}
+
+.press-story-plate img:not(.press-story-plate__award) {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.press-story-plate figcaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 12px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.press-story-plate__maps,
+.press-story-plate__boards {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: 6px;
+}
+
+.press-story-plate--boards {
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1.6fr);
+}
+
+.press-story-plate__maps figure > img {
+  mix-blend-mode: multiply;
+}
+
+.press-story-plate__boards img:nth-child(1) {
+  object-position: 40% 42%;
+}
+
+.press-story-plate__boards img:nth-child(2) {
+  object-position: 62% 42%;
+}
+
+.press-story-plate__boards img:nth-child(3) {
+  object-position: 55% 42%;
+}
+
+.press-story-plate--split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+}
+
+.press-story-plate__mapping > img {
+  mix-blend-mode: multiply;
+}
+
+.press-story-plate__room {
+  background-color: var(--ink) !important;
+}
+
+.press-story-plate__room figcaption {
+  color: var(--paper);
+}
+
+.press-story-plate img.press-story-plate__award {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: clamp(76px, 24%, 132px);
+  height: auto;
+  object-fit: contain;
+}
+
+.press-dialog__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.press-dialog__close:hover,
+.press-dialog__close:focus-visible {
+  border-color: var(--ink);
+}
+
+.press-dialog__close svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.press-dialog .press-release__category {
+  margin: 0 52px 32px 0;
+}
+
+.press-dialog h2 {
+  margin: 0;
+  font-family: "Newsreader", serif;
+  font-size: clamp(36px, 6vw, 60px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.press-dialog__body {
+  margin-top: 8px;
+  color: var(--body-copy);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.press-dialog__visual:not([hidden]) + .press-dialog__body > p:first-child {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.press-dialog__body p {
+  margin: 0 0 18px;
+}
+
+.press-dialog__body p:last-child {
+  margin-bottom: 0;
+}
+
+.press-dialog .press-release__location {
+  margin-top: 36px;
 }
 
 .press-carousel__arrow {
@@ -898,14 +1175,31 @@ a:hover {
     padding-block: 22px;
   }
 
+  .home-header.is-featured {
+    gap: 12px;
+  }
+
+  .home-header__brand {
+    max-width: calc(100% - 56px);
+    gap: 12px;
+  }
+
+  .home-header__logo {
+    width: 44px;
+  }
+
   .js .home-header {
     position: fixed;
     flex-wrap: nowrap;
   }
 
   .home-tagline {
-    max-width: calc(100% - 64px);
+    max-width: 100%;
     font-size: 18px;
+  }
+
+  .home-header.is-featured .home-tagline {
+    display: none;
   }
 
   .home-nav {

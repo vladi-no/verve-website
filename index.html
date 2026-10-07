@@ -9,14 +9,19 @@
       name="description"
       content="Verve is a studio working across design, environments, brand, imagery, film and experience. We create worlds around products."
     />
-    <link rel="stylesheet" href="./home.css" />
-    <script src="./home.js?v=collection-carousel-1" defer></script>
+    <link rel="stylesheet" href="./home.css?v=press-dialog-7" />
+    <script src="./home.js?v=press-dialog-2" defer></script>
   </head>
   <body class="home-page" id="top">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="home-header">
-      <a class="home-tagline" href="#top">We create worlds around products.</a>
+      <div class="home-header__brand">
+        <a class="home-header__logo" href="#top" aria-label="Verve home">
+          <img src="./assets/img/logo-black.png" alt="" width="860" height="622" />
+        </a>
+        <a class="home-tagline" href="#top">We create worlds around products.</a>
+      </div>
       <button
         class="home-menu-toggle"
         type="button"
@@ -76,20 +81,80 @@
         </div>
 
         <article class="project" aria-labelledby="linea-heading">
-          <figure class="project__image">
+          <figure
+            class="project__image project__image--carousel"
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Linea Mare collection highlights"
+          >
             <img
-              src="./assets/img/linea-mare.webp"
+              class="project__slide is-active"
+              src="./assets/img/linea-mare-umbrellas-2400.webp"
               srcset="
-                ./assets/img/linea-mare-900.webp  900w,
-                ./assets/img/linea-mare.webp     1800w
+                ./assets/img/linea-mare-umbrellas-900.webp   900w,
+                ./assets/img/linea-mare-umbrellas-1800.webp 1800w,
+                ./assets/img/linea-mare-umbrellas-2400.webp 2400w
               "
               sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
-              alt="An overhead view of a swimmer surrounded by ripples in a turquoise tiled pool."
-              width="1800"
-              height="1013"
+              alt="Rows of striped umbrellas overlooking a Mediterranean coastline."
+              width="2400"
+              height="1444"
               loading="lazy"
               decoding="async"
+              aria-hidden="false"
             />
+            <img
+              class="project__slide"
+              src="./assets/img/linea-mare-bedroom-2400.webp"
+              srcset="
+                ./assets/img/linea-mare-bedroom-900.webp   900w,
+                ./assets/img/linea-mare-bedroom-1800.webp 1800w,
+                ./assets/img/linea-mare-bedroom-2400.webp 2400w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
+              alt="A couple in a coastal bedroom overlooking the sea at sunset."
+              width="2400"
+              height="1444"
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+            <img
+              class="project__slide"
+              src="./assets/img/linea-mare-pool-2400.webp"
+              srcset="
+                ./assets/img/linea-mare-pool-900.webp   900w,
+                ./assets/img/linea-mare-pool-1800.webp 1800w,
+                ./assets/img/linea-mare-pool-2400.webp 2400w
+              "
+              sizes="(max-width: 900px) calc(100vw - 40px), 65vw"
+              alt="A woman looks out over the sea beside a swimming pool and striped loungers."
+              width="2400"
+              height="1444"
+              loading="lazy"
+              decoding="async"
+              aria-hidden="true"
+            />
+            <button
+              class="project__carousel-control"
+              type="button"
+              aria-label="Show the next collection highlight"
+              aria-describedby="linea-carousel-status"
+            ></button>
+            <div class="project__carousel-scrim" aria-hidden="true"></div>
+            <div class="project__carousel-hint" aria-hidden="true">
+              <span class="project__carousel-prompt">
+                <span class="project__carousel-pulse"></span>
+                View collection highlights
+              </span>
+              <span class="project__carousel-counter" aria-live="polite">01 / 03</span>
+            </div>
+            <span
+              class="visually-hidden project__carousel-status"
+              id="linea-carousel-status"
+              aria-live="polite"
+              >Image 1 of 3</span
+            >
           </figure>
           <div class="project__details">
             <div class="project__label">
@@ -97,7 +162,7 @@
             </div>
             <div class="project__description">
               <h3 id="linea-heading">
-                An Italian coastal collection, built from the room outward.
+                An Italian coastal collection, where the collection sets the scene.
               </h3>
               <p>From object to atmosphere</p>
             </div>
@@ -191,6 +256,7 @@
               <h3 id="harmonia-heading">
                 A setting as considered as the product itself, designed to let it shine.
               </h3>
+              <p>Details become the story</p>
             </div>
           </div>
         </article>
@@ -263,6 +329,9 @@
           >
             <article
               class="press-release"
+              role="button"
+              tabindex="0"
+              aria-haspopup="dialog"
               aria-labelledby="press-studio-heading"
             >
               <p class="press-release__category">Studio / 01</p>
@@ -272,43 +341,156 @@
                 imagery, film and experience together around the worlds that
                 products inhabit.
               </p>
+              <div class="press-release__more" hidden>
+                <p>
+                  Based in Atlanta, Verve brings its disciplines together in
+                  one studio. Each project starts by understanding the product
+                  and the feeling its world should create.
+                </p>
+                <p>
+                  From the first visual direction through final imagery and
+                  film, the studio builds a connected story around the object.
+                </p>
+              </div>
+              <span class="press-release__open"><span class="press-release__open-label">Read story</span><span class="press-release__open-arrow" aria-hidden="true">&#8599;</span></span>
               <p class="press-release__location">Atlanta, Georgia</p>
             </article>
 
             <article
               class="press-release"
+              role="button"
+              tabindex="0"
+              aria-haspopup="dialog"
               aria-labelledby="press-worlds-heading"
             >
               <p class="press-release__category">Perspective / 02</p>
               <h3 id="press-worlds-heading">
-                From a single object to a whole world.
+                Starting with the material.
               </h3>
               <p class="press-release__summary">
-                The studio shares its approach to product storytelling, drawing
-                on architecture, materials and light to create a sense of place
-                around each object.
+                We worked with Parador's designers and drew each room from the
+                mood of its floor.
               </p>
+              <div
+                class="press-story-plate press-story-plate--boards"
+                hidden
+                role="group"
+                aria-label="Floor and room studies for Favo, Ripplum and Nexum"
+              >
+                <div class="press-story-plate__maps">
+                  <figure>
+                    <img
+                      src="./assets/img/press/harmonia/map-favo.webp"
+                      alt="Favo floor pattern mapping"
+                    />
+                    <figcaption>Favo</figcaption>
+                  </figure>
+                  <figure>
+                    <img
+                      src="./assets/img/press/harmonia/map-ripplum.webp"
+                      alt="Ripplum floor pattern mapping"
+                    />
+                    <figcaption>Ripplum</figcaption>
+                  </figure>
+                  <figure>
+                    <img
+                      src="./assets/img/press/harmonia/map-nexum.webp"
+                      alt="Nexum floor pattern mapping"
+                    />
+                    <figcaption>Nexum</figcaption>
+                  </figure>
+                </div>
+                <div class="press-story-plate__boards" aria-hidden="true">
+                  <img
+                    src="./assets/img/press/harmonia/board-favo.webp"
+                    alt=""
+                  />
+                  <img
+                    src="./assets/img/press/harmonia/board-ripplum.webp"
+                    alt=""
+                  />
+                  <img
+                    src="./assets/img/press/harmonia/board-nexum.webp"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="press-release__more" hidden>
+                <p>
+                  We worked with Parador’s designers to build each room around
+                  the character of its floor. A product is shaped by everything
+                  around it — the space it occupies, the materials beside it,
+                  and the way light moves through it.
+                </p>
+                <p>
+                  Verve brings those elements together to give each story its
+                  own sense of place.
+                </p>
+                <p>
+                  For each room, we started with the floor. Favo’s pattern
+                  became the geometry of the space. Ripplum’s grain suggested
+                  still water. The dark lines of Nexum brought to mind a
+                  forest. From there, we explored different room compositions
+                  until each product found a setting that felt natural to it.
+                </p>
+                <p>
+                  The result is a visual world where product and space belong
+                  together — considered, distinctive, and at home in their
+                  surroundings.
+                </p>
+              </div>
+              <span class="press-release__open">
+                <span class="press-release__open-label">Read story</span>
+                <span class="press-release__open-arrow" aria-hidden="true">&#8599;</span>
+              </span>
               <p class="press-release__location">Atlanta, Georgia</p>
             </article>
 
             <article
               class="press-release"
+              role="button"
+              tabindex="0"
+              aria-haspopup="dialog"
               aria-labelledby="press-editorial-heading"
             >
               <p class="press-release__category">Collaboration / 03</p>
               <h3 id="press-editorial-heading">
-                An editorial study in light and material.
+                A real floor, not a simulation.
               </h3>
               <p class="press-release__summary">
-                Verve presents an editorial collaboration exploring the
-                relationship between objects and their surroundings through
-                still imagery and film.
+                An editorial collaboration exploring how Parador’s floors translate into crafted spaces.
               </p>
+              <div class="press-story-plate press-story-plate--split" hidden role="group" aria-label="Nexum floor mapping paired with the photographed Harmonia room">
+                <figure class="press-story-plate__mapping">
+                  <img src="./assets/img/press/harmonia/map-nexum.webp" alt="Nexum floor mapping" />
+                  <figcaption>Floor mapping</figcaption>
+                </figure>
+                <figure class="press-story-plate__room">
+                  <img src="./assets/img/press/harmonia/harmonia-nexum.webp" alt="Harmonia Nexum floor photographed in a softly lit room" />
+                  <figcaption>Nexum in light</figcaption>
+                  <img class="press-story-plate__award" src="./assets/img/press/harmonia/reddot-winner-2026.png" alt="Red Dot winner 2026, awarded to Harmonia by Parador" />
+                </figure>
+              </div>
+              <div class="press-release__more" hidden>
+                <p>
+                  We filmed and photographed each floor in our studio. Working from Parador's floor mappings, we built surfaces that answer to light the way the boards do. Harmonia, the collection these rooms were made for, went on to receive the Red Dot Award: Product Design 2026.
+                </p>
+                <p>
+                  The editorial study looks closely at shifting daylight,
+                  tactile surfaces and the space between an object and its
+                  setting. Still imagery and film work together to create a
+                  cohesive portrait of the collection.
+                </p>
+              </div>
+              <span class="press-release__open"><span class="press-release__open-label">Read story</span><span class="press-release__open-arrow" aria-hidden="true">&#8599;</span></span>
               <p class="press-release__location">Atlanta, Georgia</p>
             </article>
 
             <article
               class="press-release"
+              role="button"
+              tabindex="0"
+              aria-haspopup="dialog"
               aria-labelledby="press-motion-heading"
             >
               <p class="press-release__category">Motion / 04</p>
@@ -318,6 +500,20 @@
                 product story to life, extending its Atlanta studio's practice
                 from still imagery into film.
               </p>
+              <div class="press-release__more" hidden>
+                <p>
+                  Movement can reveal the character of a product in ways a
+                  still image cannot. A considered camera move, a change in
+                  pace or a small shift in light can draw attention to form and
+                  finish.
+                </p>
+                <p>
+                  Verve brings those choices together with sound and editing to
+                  make product films that feel connected to the wider visual
+                  story.
+                </p>
+              </div>
+              <span class="press-release__open"><span class="press-release__open-label">Read story</span><span class="press-release__open-arrow" aria-hidden="true">&#8599;</span></span>
               <p class="press-release__location">Atlanta, Georgia</p>
             </article>
           </div>
@@ -334,6 +530,23 @@
             </svg>
           </button>
         </div>
+
+        <dialog class="press-dialog" aria-labelledby="press-dialog-heading">
+          <div class="press-dialog__card">
+            <button class="press-dialog__close" type="button" aria-label="Close press story">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m6 6 12 12M18 6 6 18" />
+              </svg>
+            </button>
+            <div class="press-dialog__content">
+              <p class="press-release__category"></p>
+              <h2 id="press-dialog-heading"></h2>
+              <div class="press-dialog__visual" hidden></div>
+              <div class="press-dialog__body"></div>
+              <p class="press-release__location"></p>
+            </div>
+          </div>
+        </dialog>
       </section>
     </main>
 

@@ -1,6 +1,22 @@
 const menuToggle = document.querySelector(".home-menu-toggle");
 const navigation = document.querySelector(".home-nav");
 const mobileLayout = window.matchMedia("(max-width: 900px)");
+const homeHeader = document.querySelector(".home-header");
+const featuredSection = document.querySelector(".featured");
+
+if (homeHeader && featuredSection) {
+  const updateHeaderBrand = () => {
+    const featuredTop = featuredSection.getBoundingClientRect().top;
+    homeHeader.classList.toggle(
+      "is-featured",
+      featuredTop <= homeHeader.offsetHeight,
+    );
+  };
+
+  updateHeaderBrand();
+  window.addEventListener("scroll", updateHeaderBrand, { passive: true });
+  window.addEventListener("resize", updateHeaderBrand);
+}
 
 const pageNavigation = performance.getEntriesByType("navigation")[0];
 
@@ -123,6 +139,63 @@ if (pressTrack && previousRelease && nextRelease) {
   pressTrack.addEventListener("scroll", updateArrows, { passive: true });
   window.addEventListener("resize", updateArrows);
   updateArrows();
+}
+
+const pressDialog = document.querySelector(".press-dialog");
+
+if (pressDialog) {
+  const dialogHeading = pressDialog.querySelector("#press-dialog-heading");
+  const dialogCategory = pressDialog.querySelector(".press-release__category");
+  const dialogVisual = pressDialog.querySelector(".press-dialog__visual");
+  const dialogBody = pressDialog.querySelector(".press-dialog__body");
+  const dialogLocation = pressDialog.querySelector(".press-release__location");
+  const closeDialog = pressDialog.querySelector(".press-dialog__close");
+  let lastOpenedRelease = null;
+
+  const openRelease = (release) => {
+    const title = release.querySelector("h3");
+    const category = release.querySelector(".press-release__category");
+    const summary = release.querySelector(".press-release__summary");
+    const visual = release.querySelector(".press-story-plate");
+    const more = release.querySelector(".press-release__more");
+    const location = release.querySelector(".press-release__location");
+
+    if (!title || !category || !summary || !location) return;
+
+    lastOpenedRelease = release;
+    dialogHeading.textContent = title.textContent.trim();
+    dialogCategory.textContent = category.textContent.trim();
+    dialogVisual.replaceChildren();
+    if (visual) {
+      const visualClone = visual.cloneNode(true);
+      visualClone.hidden = false;
+      dialogVisual.append(visualClone);
+      dialogVisual.hidden = false;
+    } else {
+      dialogVisual.hidden = true;
+    }
+    dialogBody.replaceChildren(summary.cloneNode(true));
+    if (more) dialogBody.append(...Array.from(more.children, (paragraph) => paragraph.cloneNode(true)));
+    dialogLocation.textContent = location.textContent.trim();
+    pressDialog.showModal();
+    closeDialog.focus();
+  };
+
+  document.querySelectorAll(".press-release[role='button']").forEach((release) => {
+    release.addEventListener("click", () => openRelease(release));
+    release.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openRelease(release);
+      }
+    });
+  });
+
+  closeDialog.addEventListener("click", () => pressDialog.close());
+  pressDialog.addEventListener("click", (event) => {
+    if (event.target === pressDialog) pressDialog.close();
+  });
+  pressDialog.addEventListener("close", () => lastOpenedRelease?.focus());
 }
 
 const contactForm = document.querySelector(".contact-form");
