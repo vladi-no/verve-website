@@ -27,9 +27,10 @@ horizontal carousel, with left/right arrows and mobile swipe scrolling. The
 section is labeled "Studio news" and still needs final client-approved content.
 Instagram and LinkedIn links remain placeholders pending real destinations.
 
-The contact form has required Name, Email, and Message fields. Submitting it
-opens a prefilled email in the visitor's default mail app; the visitor must send
-it from there. The email link remains available as well.
+The contact form has required Name, Email, and Message fields. It submits
+asynchronously to Formspree and shows an inline confirmation or error. Its
+HTML form action also supports standard form submission when JavaScript is
+unavailable. The email link remains available as well.
 
 The hero and pool image slowly zoom in; the image with the woman slowly zooms out.
 Animations run for 18 seconds, and featured images start once when they enter

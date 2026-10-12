@@ -202,31 +202,40 @@ const contactForm = document.querySelector(".contact-form");
 
 if (contactForm) {
   const contactStatus = document.querySelector(".contact-form__status");
+  const contactSubmit = contactForm.querySelector('[type="submit"]');
 
-  contactForm.addEventListener("submit", (event) => {
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const name = String(formData.get("name") ?? "");
-    const email = String(formData.get("email") ?? "");
-    const message = String(formData.get("message") ?? "");
-    const subject = encodeURIComponent(`Website inquiry from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`,
-    );
-
-    const mailto = `mailto:christa@oakeyagency.com?subject=${subject}&body=${body}`;
-    const mailLink = document.createElement("a");
-    mailLink.href = mailto;
-    mailLink.textContent = "Open the email draft";
-
     if (contactStatus) {
-      contactStatus.replaceChildren(
-        document.createTextNode("Click to open your email draft: "),
-        mailLink,
-        document.createTextNode(".")
-      );
+      contactStatus.textContent = "Sending your message…";
       contactStatus.hidden = false;
+    }
+
+    if (contactSubmit) contactSubmit.disabled = true;
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(contactForm),
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      contactForm.reset();
+      if (contactStatus) {
+        contactStatus.textContent = "Thanks for reaching out. Your message has been sent.";
+      }
+    } catch {
+      if (contactStatus) {
+        contactStatus.textContent =
+          "Sorry, your message could not be sent. Please try again or email us directly.";
+      }
+    } finally {
+      if (contactSubmit) contactSubmit.disabled = false;
     }
   });
 }
